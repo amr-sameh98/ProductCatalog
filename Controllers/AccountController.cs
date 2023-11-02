@@ -94,7 +94,7 @@ namespace ProductCatalog.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        //------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------
 
         [HttpGet]
         public async Task<IActionResult> AdminRegistration()
