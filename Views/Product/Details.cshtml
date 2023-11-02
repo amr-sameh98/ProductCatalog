@@ -1,0 +1,31 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="card" style="width:400px">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Name</h4>
+        <p class="card-text">
+            <p> Created Date: @Model.CreatedDate</p>
+            <p>Start Date: @Model.StartDate</p>
+            <p>Duration:  @Model.DurationInDays days</p>
+            <p>Price: @Model.Price</p>
+            <p>Category: @Model.Category.Name</p>
+        </p>
+    </div>
+</div>
+
+@if(User.IsInRole("Admin"))
+    {
+    <a asp-action="GetAll" asp-controller="Product" class="btn btn-success">Back To List</a>
+    }
+else
+    {
+    <a asp-action="GetAllInDuration" asp-controller="Product" class="btn btn-success">Back To List</a>
+
+    }
+
+

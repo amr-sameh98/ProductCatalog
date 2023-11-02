@@ -1,0 +1,20 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "GetAllInDuration";
+}
+
+@foreach (Product prodcut in Model)
+{
+    <div class="card" style="width:400px">
+        <div class="card-body">
+            <h4 class="card-title">@prodcut.Name</h4>
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Details</a>
+            @if(User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Delete</a>
+            }
+        </div>
+    </div>
+}
+

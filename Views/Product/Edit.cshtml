@@ -1,0 +1,46 @@
+﻿@model AddProductFormViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form  asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label asp-for="Name" class="form-label mt-4"></label>
+				<input  class="form-control" asp-for="Name" placeholder="Name">
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="StartDate" class="form-label mt-4"></label>
+				<input  class="form-control" asp-for="StartDate" placeholder="Start Date">
+				<span asp-validation-for="StartDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="DurationInDays" class="form-label mt-4"></label>
+				<input  class="form-control" asp-for="DurationInDays" placeholder="Duration In Days">
+				<span asp-validation-for="DurationInDays" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Price" class="form-label mt-4"></label>
+				<input  class="form-control" asp-for="Price" placeholder="Price">
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CategoryId" class="form-label mt-4"></label>
+				<select class="form-select" asp-for="CategoryId" asp-items="Model.Categories"
+	  data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+					<option value=""></option>
+				</select>
+				<span asp-validation-for="CategoryId" class="text-danger"></span>
+			</div>
+			<button type="submit" class="btn btn-light text-black mt-4">Save</button>
+		</div>
+
+	</div>
+</form>
+
+<br />
+
+<a asp-action="GetAll" asp-controller="Product" class="btn btn-success">Back To List</a>
+

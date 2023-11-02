@@ -1,0 +1,37 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+
+
+<a class="btn btn-secondary btn-lg" asp-action="Add">
+    <i class="bi bi-plus-circle-dotted"></i>
+    Add Product
+</a>
+
+<div>
+    <a asp-action="GetAll" asp-controller="Product" asp-route-id="" class="btn btn-primary">All</a>
+@foreach (var category in ViewBag.Categories)
+{
+
+        <a asp-action="GetAll" asp-controller="Product" asp-route-id="@category.Value" class="btn btn-primary">@category.Text</a>
+}
+</div>
+
+@foreach ( Product prodcut in Model)
+{
+    <div class="card" style="width:400px">
+        <div class="card-body">
+            <h4 class="card-title">@prodcut.Name</h4>
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Details</a>
+            <a asp-action="Edit" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Delete" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Delete</a>
+
+
+        </div>
+    </div>
+}
+
+
+
