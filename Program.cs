@@ -47,7 +47,7 @@ namespace ProductCatalog
 
 			app.MapControllerRoute(
 				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}");
+				pattern: "{controller=Account}/{action=Registration}/{id?}");
 
 			app.Run();
 		}
