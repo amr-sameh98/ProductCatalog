@@ -1,8 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Identity;
-using System.Data;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+﻿using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace ProductCatalog.Controllers
 {

@@ -11,9 +11,6 @@ namespace ProductCatalog.Services
 		{
 			_context = context;
 		}
-
-
-
 		public async Task<Product> Add(AddProductFormViewModel product)
 		{
             Product createdProduct = new Product()
@@ -59,7 +56,7 @@ namespace ProductCatalog.Services
 			return product;
 		}
 
-		public async Task<List<Product>> GetAllInDuration(int? categoryId = null)
+		public async Task<List<Product>> GetAllInDuration(int? categoryId = 0)
 		{
 
 			var query1 = _context.Products.Include(p => p.Category).Where(p => p.StartDate < DateTime.Now);
@@ -68,9 +65,9 @@ namespace ProductCatalog.Services
 
 
             //var query2 = _context.Products.Include(p => p.Category).Where(p => p.StartDate.AddDays(p.DurationInDays) > DateTime.Now);
-			if (categoryId != null)
+			if (categoryId != 0)
 			{
-				query2.Where(p => p.CategoryId == categoryId);
+				return await query2.Where(p => p.CategoryId == categoryId).ToListAsync();
 			}
 			return await query2.ToListAsync();
 		}

@@ -5,6 +5,7 @@
 	{
 		IProductsServices productsService;
         ICategoriesServices categoriesServices;
+        
 
         public ProductController(IProductsServices _productsServices , ICategoriesServices _categoriesServices)
 		{
@@ -12,10 +13,10 @@
             categoriesServices = _categoriesServices;
 
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll(int id)
 		{
-            IEnumerable<SelectListItem> categories = await categoriesServices.GetSelectList();
+             IEnumerable<SelectListItem> categories = await categoriesServices.GetSelectList();
             ViewData["Categories"] = categories;
             return  View(await productsService.GetAll(id));
 		}
@@ -82,9 +83,11 @@
             await productsService.Edit(product);
             return RedirectToAction(nameof(GetAll));
         }
-        public async Task<IActionResult> GetAllInDuration()
+        public async Task<IActionResult> GetAllInDuration(int id)
         {
-            return View(await productsService.GetAllInDuration());
+            IEnumerable<SelectListItem> categories = await categoriesServices.GetSelectList();
+            ViewData["Categories"] = categories;
+            return View( nameof(GetAll) ,  await productsService.GetAllInDuration(id));
         }
     }
 }

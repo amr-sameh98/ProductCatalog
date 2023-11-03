@@ -3,29 +3,27 @@
     ViewData["Title"] = "Details";
 }
 
+<h1 class="fw-bold">Details</h1>
+<hr />
 
-
-<div class="card" style="width:400px">
+<div class="card mt-2 mb-3" style="width:400px">
     <div class="card-body">
-        <h4 class="card-title">@Model.Name</h4>
-        <p class="card-text">
-            <p> Created Date: @Model.CreatedDate</p>
-            <p>Start Date: @Model.StartDate</p>
-            <p>Duration:  @Model.DurationInDays days</p>
-            <p>Price: @Model.Price</p>
-            <p>Category: @Model.Category.Name</p>
-        </p>
+        <h4 class="card-title mb-4 text-dark fw-bold">@Model.Name</h4>
+        <h6 class="card-title">Price: @Model.Price$</h6>
+        <h6 class="card-title">Category: @Model.Category.Name</h6>
+        <h6 class="card-title">Created Date: @Model.CreatedDate</h6>
+        <h6 class="card-title">Start Date: @Model.StartDate</h6>
+        <h6 class="card-title">Duration:  @Model.DurationInDays days</h6>
     </div>
 </div>
 
 @if(User.IsInRole("Admin"))
     {
-    <a asp-action="GetAll" asp-controller="Product" class="btn btn-success">Back To List</a>
+    <a asp-action="GetAll" asp-controller="Product" class="btn btn-secondary text-white fw-bold mt-4 pt-2 pb-2 ps-3 pe-3 fs-4 shadow-none" fdprocessedid="ri18s7">Back to procudts</a>
     }
 else
     {
-    <a asp-action="GetAllInDuration" asp-controller="Product" class="btn btn-success">Back To List</a>
-
+    <a asp-action="GetAllInDuration" asp-controller="Product" class="btn btn-secondary text-white fw-bold mt-4 pt-2 pb-2 ps-3 pe-3 fs-4 shadow-none" fdprocessedid="ri18s7">Back to products</a>
     }
 
 

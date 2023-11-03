@@ -2,36 +2,72 @@
 @{
     ViewData["Title"] = "GetAll";
 }
+<h1 class="fw-bold">Products</h1>
+<hr />
+
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-dark btn-lg ms-2 mb-3" asp-action="Add">
+        <i class="bi bi-plus-circle-dotted"></i>
+        Add New Product
+    </a>
+}
 
 
+<div class="d-flex justify-content-evenly mt-2 mb-3">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="GetAll" asp-controller="Product" asp-route-id="" class="btn btn-info p-2 fs-5 fw-bold" fdprocessedid="i01ul" style="width: 140px;">All</a>
+    }
+    else
+    {
+        <a asp-action="GetAllInDuration" asp-controller="Product" asp-route-id="" class="btn btn-info p-2 fs-5 fw-bold" fdprocessedid="i01ul" style="width: 140px;">All</a>
+    }
 
-<a class="btn btn-secondary btn-lg" asp-action="Add">
-    <i class="bi bi-plus-circle-dotted"></i>
-    Add Product
-</a>
-
-<div>
-    <a asp-action="GetAll" asp-controller="Product" asp-route-id="" class="btn btn-primary">All</a>
 @foreach (var category in ViewBag.Categories)
 {
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="GetAll" asp-controller="Product" asp-route-id="@category.Value" class="btn btn-info p-2 fs-5 fw-bold" fdprocessedid="i01ul" style="width: 140px;">@category.Text</a>
+        }
+        else
+        {
+            <a asp-action="GetAllInDuration" asp-controller="Product" asp-route-id="@category.Value" class="btn btn-info p-2 fs-5 fw-bold" fdprocessedid="i01ul" style="width: 140px;">@category.Text</a>
+        }
 
-        <a asp-action="GetAll" asp-controller="Product" asp-route-id="@category.Value" class="btn btn-primary">@category.Text</a>
-}
+    }
+@*    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="GetAllInDuration" asp-controller="Product" asp-route-id="" class="btn btn-info p-2 fs-5 fw-bold" fdprocessedid="i01ul" style="width: 140px;">In Duration</a>
+    }*@
 </div>
 
+
+<div class="d-flex align-items-center flex-wrap mt-4">
 @foreach ( Product prodcut in Model)
 {
-    <div class="card" style="width:400px">
+    <div class="card m-3 mt-4" style="width:400px">
         <div class="card-body">
-            <h4 class="card-title">@prodcut.Name</h4>
-            <a asp-action="Details" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Details</a>
-            <a asp-action="Edit" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Edit</a>
-            <a asp-action="Delete" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-primary">Delete</a>
-
+            <h4 class="card-title mb-3 text-dark fw-bold">@prodcut.Name</h4>
+            <h6 class="card-title">Price: @prodcut.Price$</h6>
+            <h6 class="card-title">Category: @prodcut.Category.Name</h6>
+            <div class="mt-4">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-secondary shadow-none" fdprocessedid="ri18s7">More Details</a>
+                    <div class="d-inline" style="margin-left:140px;">
+                    @if (User.IsInRole("Admin"))
+                    {
+                            <a asp-action="Edit" asp-controller="Product" asp-route-id="@prodcut.Id" class="btn btn-warning shadow-none me-2" fdprocessedid="5063al"><i class="bi bi-pen"></i></a>
+                            @Html.ActionLink("", "Delete",
+                                new { controller = "Product", id = @prodcut.Id },
+                                new { @class = "btn btn-danger shadow-none bi bi-trash3" ,   onclick = "return confirm('Are sure wants to delete?');"})
+                    }
+                    </div>
+            </div>
 
         </div>
     </div>
 }
+</div>
 
 
 

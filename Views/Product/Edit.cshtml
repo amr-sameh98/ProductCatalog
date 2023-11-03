@@ -7,34 +7,34 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<label asp-for="Name" class="form-label mt-4"></label>
-				<input  class="form-control" asp-for="Name" placeholder="Name">
+				<label asp-for="Name" class="form-label mb-2 text-dark mt-4"></label>
+				<input class="form-control shadow-none" asp-for="Name" placeholder="Name">
 				<span asp-validation-for="Name" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<label asp-for="StartDate" class="form-label mt-4"></label>
-				<input  class="form-control" asp-for="StartDate" placeholder="Start Date">
+			<div class="form-group mt-3">
+				<label asp-for="StartDate" class="form-label mb-2 text-dark mt-4"></label>
+				<input class="form-control shadow-none" asp-for="StartDate" placeholder="Start Date">
 				<span asp-validation-for="StartDate" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<label asp-for="DurationInDays" class="form-label mt-4"></label>
-				<input  class="form-control" asp-for="DurationInDays" placeholder="Duration In Days">
+			<div class="form-group mt-3">
+				<label asp-for="DurationInDays" class="form-label mb-2 text-dark mt-4"></label>
+				<input class="form-control shadow-none" asp-for="DurationInDays" placeholder="Duration In Days">
 				<span asp-validation-for="DurationInDays" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<label asp-for="Price" class="form-label mt-4"></label>
-				<input  class="form-control" asp-for="Price" placeholder="Price">
+			<div class="form-group mt-3">
+				<label asp-for="Price" class="form-label mb-2 text-dark mt-4"></label>
+				<input class="form-control shadow-none" asp-for="Price" placeholder="Price">
 				<span asp-validation-for="Price" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<label asp-for="CategoryId" class="form-label mt-4"></label>
+			<div class="form-group mt-3">
+				<label asp-for="CategoryId" class="form-label mb-2 text-dark mt-4"></label>
 				<select class="form-select" asp-for="CategoryId" asp-items="Model.Categories"
-	  data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+					 data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
 					<option value=""></option>
 				</select>
 				<span asp-validation-for="CategoryId" class="text-danger"></span>
 			</div>
-			<button type="submit" class="btn btn-light text-black mt-4">Save</button>
+			<button type="submit" class="btn btn-info text-white fw-bold mt-4 pt-2 pb-2 ps-3 pe-3 fs-4 shadow-none" fdprocessedid="i01ul">Edit</button>
 		</div>
 
 	</div>
@@ -42,5 +42,11 @@
 
 <br />
 
-<a asp-action="GetAll" asp-controller="Product" class="btn btn-success">Back To List</a>
+<a asp-action="GetAll" asp-controller="Product" class="btn btn-secondary text-white fw-bold mt-2 pt-2 pb-2 ps-3 pe-3 fs-4 shadow-none" fdprocessedid="ri18s7">Back to products</a>
+
+@section Scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js">
+	</script>
+}
 
